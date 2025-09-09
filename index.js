@@ -1,11 +1,11 @@
-const { Telegraf } = require("telegraf");
+
 const http = require("http");
 
-// Токен от @BotFather
-const BOT_TOKEN = "8476593486:AAHg5ZOakRaryBTvP-etIz_EjT19MkewUfU";
+require("dotenv").config();
+const { Telegraf } = require("telegraf");
 
-// Создаём бота
-const bot = new Telegraf(BOT_TOKEN);
+const bot = new Telegraf(process.env.BOT_TOKEN); // токен берём из .env
+const deleteDelay = process.env.DELETE_DELAY || 5000;
 
 // Список user_id, чьи сообщения нужно удалять
 const blockedUsers = [
@@ -14,7 +14,7 @@ const blockedUsers = [
 ];
 
 // Время задержки перед удалением (в миллисекундах)
-const deleteDelay = 1;
+const deleteDelay1 = 1;
 
 // Обработка всех сообщений
 bot.on("message", async (ctx) => {
@@ -31,7 +31,7 @@ bot.on("message", async (ctx) => {
       } catch (err) {
         console.error("Ошибка при удалении:", err.description || err);
       }
-    }, deleteDelay);
+    }, deleteDelay1);
   }
 });
 
