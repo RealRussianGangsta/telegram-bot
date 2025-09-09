@@ -1,4 +1,5 @@
 
+console.log("BOT_TOKEN:", process.env.BOT_TOKEN);
 const http = require("http");
 
 require("dotenv").config();
